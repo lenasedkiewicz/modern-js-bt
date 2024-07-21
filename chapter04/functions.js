@@ -23,3 +23,11 @@ function minMax(arr) {
 }
 
 console.log(minMax([1, 2, 3, 4, 5, 6, 7, 100]));
+
+// IIFE function
+
+((length, width) => {
+  const area = length * width;
+  const oputput = `The area or a rectangle with a length of ${length} and width of ${width} is ${area}`;
+  console.log(oputput);
+})(10, 5);
