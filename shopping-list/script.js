@@ -16,7 +16,14 @@ function addItem(e) {
   const li = document.createElement("li");
   li.appendChild(document.createTextNode(newItem));
 
-  console.info(li);
+  const button = createButton("remove-item btn-link text-red");
+  console.info(button);
+}
+
+function createButton(classes) {
+  const button = document.createElement("button");
+  button.className = classes;
+  return button;
 }
 
 // Event listeners - keeping them on the bottom
