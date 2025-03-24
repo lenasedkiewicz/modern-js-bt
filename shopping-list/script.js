@@ -4,14 +4,19 @@ const itemList = document.getElementById("item-list");
 
 function addItem(e) {
   e.preventDefault();
+  const newItem = itemInput.value;
 
   //Validate input
-  if (itemInput.value === "") {
+  if (newItem === "") {
     alert("Please add an item");
     return;
   }
 
-  console.info("Success");
+  // Create list item
+  const li = document.createElement("li");
+  li.appendChild(document.createTextNode(newItem));
+
+  console.info(li);
 }
 
 // Event listeners - keeping them on the bottom
