@@ -3,7 +3,6 @@ const itemInput = document.getElementById("item-input");
 const itemList = document.getElementById("item-list");
 const clearBtn = document.getElementById("clear");
 const itemFilter = document.getElementById("filter");
-const items = itemList.querySelectorAll("li"); // node list
 
 function addItem(e) {
   e.preventDefault();
@@ -48,15 +47,20 @@ function removeItem(e) {
   if (e.target.parentElement.classList.contains("remove-item")) {
     e.target.parentElement.parentElement.remove();
   }
+
+  checkUI();
 }
 
 function clearItems() {
   while (itemList.firstChild) {
     itemList.removeChild(itemList.firstChild);
   }
+
+  checkUI();
 }
 
 function checkUI() {
+  const items = itemList.querySelectorAll("li"); // node list
   if (items.length === 0) {
     clearBtn.style.display = "none";
     itemFilter.style.display = "none";
