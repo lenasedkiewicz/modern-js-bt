@@ -113,6 +113,9 @@ function clearItems() {
     itemList.removeChild(itemList.firstChild);
   }
 
+  // Clear from local storage
+  localStorage.removeItem("items");
+
   checkUI();
 }
 
