@@ -5,7 +5,6 @@ const clearBtn = document.getElementById("clear");
 const itemFilter = document.getElementById("filter");
 const formBtn = itemForm.querySelector("button");
 let isEditMode = false;
-let doesItemExist = false;
 
 function displayItems() {
   const itemsFromStorage = getItemsFromStorage();
@@ -31,30 +30,24 @@ function onAddItemSubmit(e) {
     itemToEdit.classList.remove("edit-mode");
     itemToEdit.remove();
     isEditMode = false;
-  }
-
-  // my code starts
-  doesExist(newItem);
-  // Check if item exists
-  if (!doesItemExist) {
-    // Create DOM element
-    addItemToDOM(newItem);
-
-    // Add item to local storage
-    addItemToStorage(newItem);
-
-    itemInput.value = "";
-
-    //Check the UI
-    checkUI();
-    console.log(newItem);
-    doesItemExist = false;
   } else {
-    alert("Item already exists!");
-    itemInput.value = "";
+    if (checkIfItemExists(newItem)) {
+      alert("Item already exists!");
+      itemInput.value = "";
+      return;
+    }
   }
 
-  // my code ends
+  // Create DOM element
+  addItemToDOM(newItem);
+
+  // Add item to local storage
+  addItemToStorage(newItem);
+
+  itemInput.value = "";
+
+  //Check the UI
+  checkUI();
 }
 
 function addItemToDOM(item) {
@@ -113,17 +106,9 @@ function onClickItem(e) {
   }
 }
 // my code starts
-function doesExist(newItem) {
-  let items = getItemsFromStorage();
-  console.log(items);
-  const itemsToLower = items.map((item) => item.toLowerCase());
-  console.log(itemsToLower);
-  console.log(itemsToLower.includes(newItem.toLowerCase()));
-  if (itemsToLower.includes(newItem.toLowerCase())) {
-    doesItemExist = true;
-  } else {
-    doesItemExist = false;
-  }
+function checkIfItemExists(item) {
+  const itemsFromStorage = getItemsFromStorage();
+  return itemsFromStorage.includes(item);
 }
 
 // my code ends
