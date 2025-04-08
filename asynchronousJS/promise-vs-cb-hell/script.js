@@ -27,8 +27,9 @@ getData("./movies.json")
   })
   .then((actors) => {
     console.log(actors);
-    return getData("./directors.json");
+    return getData("./directorss.json");
   })
   .then((directors) => {
     console.log(directors);
-  });
+  })
+  .catch((error) => console.error(error));
