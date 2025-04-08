@@ -1,15 +1,12 @@
 // create a promise
 
-const promise = new Promise((resolve, reject) => {
+const getUser = new Promise((resolve, reject) => {
   // some async task
   setTimeout(() => {
-    console.log("Async task complete");
-    resolve();
+    resolve({ name: "John", age: 34 });
   }, 1000);
-});
-
-promise.then(() => {
-  console.log("Promise consumed...");
+}).then((user) => {
+  console.log(user);
 });
 
 console.log("Hello from global scope");
