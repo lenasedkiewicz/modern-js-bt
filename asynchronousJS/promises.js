@@ -3,10 +3,22 @@
 const getUser = new Promise((resolve, reject) => {
   // some async task
   setTimeout(() => {
-    resolve({ name: "John", age: 34 });
+    let error = true;
+
+    if (!error) {
+      resolve({ name: "John", age: 34 });
+    } else {
+      reject("Error: Something went wrong...");
+    }
   }, 1000);
-}).then((user) => {
-  console.log(user);
 });
 
-console.log("Hello from global scope");
+getUser
+  .then((user) => {
+    console.info(user);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+
+console.info("Hello from global scope");
