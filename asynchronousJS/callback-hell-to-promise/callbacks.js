@@ -1,24 +1,17 @@
-// notes callback
-
-// for now how was used:
-// function toggle(e) {
-//   e.target.classList.toggle("danger");
-// }
-// document.querySelector("button").addEventListener("click", toggle);
-
 const posts = [
   { title: "Post One", body: "This is post one" },
   { title: "Post Two", body: "This is post two" },
 ];
 
-function createPost(post, cb) {
-  setTimeout(() => {
-    posts.push(post);
-    cb();
-  }, 2000);
+function createPost(post) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      posts.push(post);
+      resolve();
+    }, 2000);
+  });
 }
 
-// mimicking getting data from server
 function getPosts() {
   setTimeout(() => {
     posts.forEach(function (post) {
@@ -28,4 +21,4 @@ function getPosts() {
     });
   }, 1000);
 }
-createPost({ title: "Post Three", body: "This is post three" }, getPosts);
+createPost({ title: "Post Three", body: "This is post three" }).then(getPosts);
